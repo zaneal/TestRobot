@@ -103,11 +103,11 @@ object Robot : TimedRobot()
         val difference = 2 - abs(x)
 
         if (x > -0.9 && x < 0.9){
-            rightVoltage = y
-            leftVoltage = y
+            rightVoltage = -y * abs(y)
+            leftVoltage = -y * abs(y)
         } else if (y > -0.9 && y < 0.9) {
-            rightVoltage = -x
-            leftVoltage = x
+            rightVoltage = x * abs(x)
+            leftVoltage = -x * abs(x)
         } else if (y < 0 && x > 0) {
             rightVoltage = y * difference
             leftVoltage = y * abs(x)
@@ -123,8 +123,9 @@ object Robot : TimedRobot()
         else if (y > 0 && x < 0) {
             rightVoltage = -y * abs(x)
             leftVoltage = -y * difference
-
         }
+        // var forward = controller0.leftY * abs(controller.leftY) * 5
+        // var rotation = -controller0.leftX * abs(controller.leftX) * 1
 
         rightSide.setVoltage(leftVoltage * 6)
         leftSide.setVoltage(rightVoltage * 6)
